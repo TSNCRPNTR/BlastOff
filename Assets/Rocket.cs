@@ -6,12 +6,16 @@ public class Rocket : MonoBehaviour
 {
 
     Rigidbody rigidBody;
+    AudioSource RocketNoise;
 
+    bool noiseToggle;
+    bool noisePlay;
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        RocketNoise = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,18 +25,45 @@ public class Rocket : MonoBehaviour
         ProcessInput();
     }
 
-//Two seperate if's are messy, but it works better than else-if's for rotating and thrusting at the same time.
-//Space would take priority, would only let you do one thing at a time (if we did else-if).
-//^-^
     private void ProcessInput(){
-        if(Input.GetKey(KeyCode.Space)){
-            //haha rocket go brrrrr
-            rigidBody.AddRelativeForce(Vector3.Up);
+        //Haha rocket go brrr
+        Thrust();
+        //rotato banana
+        Rotate();
+    }
+
+private void Thrust(){
+    if(Input.GetKey(KeyCode.Space)){
+            rigidBody.AddRelativeForce(Vector3.up);
+            if(!RocketNoise.isPlaying){
+                RocketNoise.Play();
+            }
         }
+        
+    }
+
+private void Rotate(){
+    rigidBody.freezeRotation = true;
         if(Input.GetKey(KeyCode.A)){
+            transform.Rotate(Vector3.forward);
             print("Rotating Left");
         }else if(Input.GetKey(KeyCode.D)){
+            transform.Rotate(-Vector3.forward);
             print("Rotating Right");
         }
     }
+    rigidBody.freezeRotation = false;
 }
+
+/*
+Whoops, way too complicated
+    private void ProcessNoise(){
+    if(noisePlay == true && noiseToggle == true){
+        RocketNoise.Play();
+        noiseToggle=false;
+    } else if (noisePlay == false && noiseToggle == true){
+        RocketNoise.Stop();
+        noiseToggle = false();
+    }
+}
+*/
