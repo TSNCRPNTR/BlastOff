@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-
+    [SerializeField] float rcsThrust = 300f;
+    [SerializeField] float mainThrust = 300f;
     Rigidbody rigidBody;
     AudioSource RocketNoise;
 
@@ -32,28 +33,44 @@ public class Rocket : MonoBehaviour
         Rotate();
     }
 
+void OnCollisionEnter(Collision collision){
+    switch(collision.gameObject.tag){
+        case "Friendly":
+            print("ok");
+            break;
+        case "Fuel":
+            print("Fuel");
+            break;
+        default:
+            print("Dead");
+            break;
+    }
+}
+
 private void Thrust(){
+    float frameThrust = mainThrust*Time.deltaTime;
     if(Input.GetKey(KeyCode.Space)){
-            rigidBody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up*frameThrust);
             if(!RocketNoise.isPlaying){
                 RocketNoise.Play();
             }
+        } else {
+            RocketNoise.Stop();
         }
         
     }
 
 private void Rotate(){
-    rigidBody.freezeRotation = true;
+    rigidBody.freezeRotation = true;    //Freezes rotation, makes for easier control
+    float frameRotation = rcsThrust*Time.deltaTime; //help rotate faster, with more control.
         if(Input.GetKey(KeyCode.A)){
-            transform.Rotate(Vector3.forward);
-            print("Rotating Left");
+            transform.Rotate(Vector3.forward*frameRotation);
         }else if(Input.GetKey(KeyCode.D)){
-            transform.Rotate(-Vector3.forward);
-            print("Rotating Right");
+            transform.Rotate(-Vector3.forward*frameRotation);
         }
-    }
     rigidBody.freezeRotation = false;
-}
+    }
+} 
 
 /*
 Whoops, way too complicated
