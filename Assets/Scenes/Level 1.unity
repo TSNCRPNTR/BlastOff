@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Landing Pad
       objectReference: {fileID: 0}
+    - target: {fileID: 4189609188064550424, guid: 3d04ae5d34e70f248bd5a5b3d5f3c4ea, type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d04ae5d34e70f248bd5a5b3d5f3c4ea, type: 3}
 --- !u!4 &955196285 stripped
@@ -862,6 +866,10 @@ PrefabInstance:
     - target: {fileID: 1513404631, guid: 580e80a409eeaf24e8a94810d2f78572, type: 3}
       propertyPath: mainThrust
       value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513404632, guid: 580e80a409eeaf24e8a94810d2f78572, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6062961165306139190, guid: 580e80a409eeaf24e8a94810d2f78572, type: 3}
       propertyPath: m_Name
@@ -1479,6 +1487,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2661131174814057390, guid: 4507fc029f57b934dba471cc528012b1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 68418aa7ac7df514aaedc69c118a1ee2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4507fc029f57b934dba471cc528012b1, type: 3}
 --- !u!1001 &3786375777338923945
